@@ -10,6 +10,7 @@ import java.io.IOException;
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        // Setting up scene
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("views/MainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 960, 540);
         stage.setTitle("EchoFX - Login");

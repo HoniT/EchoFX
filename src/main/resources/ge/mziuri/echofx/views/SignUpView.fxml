@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.UserEntryController">
 <children>
       <Text layoutX="145.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" textAlignment="CENTER" wrappingWidth="669.373046875" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="15.0">
          <font>
@@ -18,42 +18,42 @@
          <font>
             <Font size="23.0" />
          </font></TextField>
-      <Text layoutX="234.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="212.373046875" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="69.3896484375">
+      <Text layoutX="234.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="212.373046875" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="513.626953125" AnchorPane.topAnchor="69.3896484375">
          <font>
             <Font size="33.0" />
          </font>
       </Text>
-      <TextField fx:id="emailFieldSignup" layoutX="234.0" layoutY="211.0" prefHeight="50.0" prefWidth="492.0">
+      <TextField fx:id="emailFieldSignup" layoutX="234.0" layoutY="211.0" prefHeight="50.0" prefWidth="492.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="211.0">
          <font>
             <Font size="23.0" />
          </font>
       </TextField>
-      <Text layoutX="234.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="212.373046875">
+      <Text layoutX="234.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="212.373046875" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="513.626953125" AnchorPane.topAnchor="165.3896484375">
          <font>
             <Font size="33.0" />
          </font>
       </Text>
-      <Button layoutX="374.0" layoutY="368.0" mnemonicParsing="false" onAction="#onSignup" prefHeight="0.0" prefWidth="212.0" text="Sign Up" AnchorPane.leftAnchor="374.0" AnchorPane.topAnchor="368.0">
+      <Button layoutX="374.0" layoutY="368.0" mnemonicParsing="false" onAction="#onSignup" prefHeight="0.0" prefWidth="212.0" text="Sign Up" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="368.0">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="420.0" layoutY="482.0" mnemonicParsing="false" onAction="#loadLogInScene" prefHeight="44.0" prefWidth="119.0" text="Log In" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="482.0">
+      <Button layoutX="420.0" layoutY="482.0" mnemonicParsing="false" onAction="#loadLogInScene" prefHeight="44.0" prefWidth="119.0" text="Log In" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="482.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Text layoutX="374.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Into Account" textAlignment="CENTER" wrappingWidth="212.373046875">
+      <Text layoutX="374.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Into Account" textAlignment="CENTER" wrappingWidth="212.373046875" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="373.626953125" AnchorPane.topAnchor="452.259765625">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <PasswordField fx:id="passwordFieldSignup" layoutX="234.0" layoutY="307.0" prefHeight="50.0" prefWidth="492.0">
+      <PasswordField fx:id="passwordFieldSignup" layoutX="234.0" layoutY="307.0" prefHeight="50.0" prefWidth="492.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="307.0">
          <font>
             <Font size="23.0" />
          </font>
       </PasswordField>
-      <Text layoutX="234.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="212.373046875">
+      <Text layoutX="234.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="212.373046875" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="513.626953125" AnchorPane.topAnchor="261.3896484375">
          <font>
             <Font size="33.0" />
          </font>

@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.UserEntryController">
 <children>
-      <Text layoutX="145.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" textAlignment="CENTER" wrappingWidth="669.373046875" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="15.0">
+      <Text boundsType="VISUAL" layoutX="143.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" textAlignment="CENTER" wrappingWidth="669.373046875" AnchorPane.leftAnchor="387.26171875" AnchorPane.rightAnchor="387.259765625">
          <font>
             <Font size="60.0" />
          </font>
@@ -23,27 +23,27 @@
             <Font size="33.0" />
          </font>
       </Text>
-      <PasswordField fx:id="passwordFieldLogin" layoutX="234.0" layoutY="246.0" prefHeight="50.0" prefWidth="492.0">
+      <PasswordField fx:id="passwordFieldLogin" layoutX="234.0" layoutY="246.0" prefHeight="50.0" prefWidth="492.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="246.0">
          <font>
             <Font size="23.0" />
          </font>
       </PasswordField>
-      <Text layoutX="234.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="212.373046875">
+      <Text layoutX="234.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="212.373046875" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="200.3896484375">
          <font>
             <Font size="33.0" />
          </font>
       </Text>
-      <Button layoutX="343.0" layoutY="321.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="84.0" prefWidth="275.0" text="Login" AnchorPane.leftAnchor="343.0" AnchorPane.topAnchor="321.0">
+      <Button layoutX="343.0" layoutY="321.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="84.0" prefWidth="275.0" text="Login" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="321.0">
          <font>
             <Font size="40.0" />
          </font>
       </Button>
-      <Button layoutX="420.0" layoutY="443.0" mnemonicParsing="false" onAction="#loadSignUpScene" prefHeight="44.0" prefWidth="119.0" text="Sign Up" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="443.0">
+      <Button layoutX="420.0" layoutY="442.0" mnemonicParsing="false" onAction="#loadSignUpScene" prefHeight="44.0" prefWidth="119.0" text="Sign Up" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="442.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Text layoutX="374.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" textAlignment="CENTER" wrappingWidth="212.373046875">
+      <Text layoutX="374.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" textAlignment="CENTER" wrappingWidth="212.373046875" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="373.626953125">
          <font>
             <Font size="22.0" />
          </font>

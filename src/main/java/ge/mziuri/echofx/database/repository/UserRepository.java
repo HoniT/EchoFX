@@ -1,5 +1,6 @@
 package ge.mziuri.echofx.database.repository;
 
+import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.Database;
 
 import java.sql.Connection;
@@ -24,12 +25,8 @@ public class UserRepository {
             return false;
         }
 
-        // For now printing info
-        System.out.println(resultSet.getInt(1));
-        System.out.println(resultSet.getString(2));
-        System.out.println(resultSet.getString(3));
-        System.out.println(resultSet.getString(4));
-        System.out.println(resultSet.getDate(5));
+        // Saving user info (excluding password hash for security)
+        Session.saveUser(resultSet);
         return true;
     }
 
@@ -54,7 +51,9 @@ public class UserRepository {
         Date date = Date.valueOf(LocalDate.now());
         preparedStatement.setDate(4, date);
         preparedStatement.execute();
-        System.out.println("Added user");
+
+        // Saving user info (excluding password hash for security)
+        Session.saveUser(resultSet);
         return true;
     }
 }

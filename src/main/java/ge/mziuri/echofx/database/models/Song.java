@@ -1,5 +1,8 @@
 package ge.mziuri.echofx.database.models;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+
 public class Song {
     private int songId;
     private String title;
@@ -15,6 +18,14 @@ public class Song {
         this.album = album;
         this.duration = duration;
         this.apiUrl = apiUrl;
+    }
+
+    // Creates a banner for this song
+    public AnchorPane createBanner() {
+        AnchorPane anchorPane = new AnchorPane();
+        Text titleText = new Text(this.title);
+        anchorPane.getChildren().add(titleText);
+        return anchorPane;
     }
 
     public int getSongId() {

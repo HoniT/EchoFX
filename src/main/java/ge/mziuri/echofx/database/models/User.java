@@ -9,6 +9,8 @@ public class User {
     private String passwordHash;
     private Date createdAt;
 
+    public User() {}
+
     public User(int userId, String username, String email, String passwordHash, Date createdAt) {
         this.userId = userId;
         this.username = username;

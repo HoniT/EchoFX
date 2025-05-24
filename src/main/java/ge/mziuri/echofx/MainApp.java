@@ -1,7 +1,5 @@
 package ge.mziuri.echofx;
 
-import ge.mziuri.echofx.database.repository.UserRepository;
-import ge.mziuri.echofx.services.EncryptionService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

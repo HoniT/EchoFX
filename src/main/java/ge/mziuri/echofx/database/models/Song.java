@@ -1,31 +1,52 @@
 package ge.mziuri.echofx.database.models;
 
+import ge.mziuri.echofx.controllers.MainController;
+import ge.mziuri.echofx.controllers.SongController;
+import ge.mziuri.echofx.services.AudioPlayService;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 public class Song {
     private int songId;
+    private int userId;
     private String title;
     private String artist;
     private String album;
     private float duration;
-    private String apiUrl;
+    private String address;
 
-    public Song(int songId, String title, String artist, String album, float duration, String apiUrl) {
-        this.songId = songId;
+    public Song(int userId, String title, String artist, String album, float duration, String address) {
+        this.userId = userId;
         this.title = title;
         this.artist = artist;
         this.album = album;
         this.duration = duration;
-        this.apiUrl = apiUrl;
+        this.address = address;
     }
 
     // Creates a banner for this song
     public AnchorPane createBanner() {
-        AnchorPane anchorPane = new AnchorPane();
-        Text titleText = new Text(this.title);
-        anchorPane.getChildren().add(titleText);
-        return anchorPane;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ge/mziuri/echofx/views/SongView.fxml"));
+            AnchorPane banner = loader.load();
+
+            // Printing song info on song banner
+            SongController controller = loader.getController();
+            controller.setTitle(this.title);
+            controller.setArtist(this.artist);
+            controller.setPlayAction(event -> {
+                AudioPlayService.playMusic(this.address);
+                // Setting this title as the current playing song
+                MainController.controller.setCurrentSongText(this.title);
+            });
+
+            return banner;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new AnchorPane(); // fallback
+        }
     }
 
     public int getSongId() {
@@ -34,6 +55,14 @@ public class Song {
 
     public void setSongId(int songId) {
         this.songId = songId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -68,23 +97,24 @@ public class Song {
         this.duration = duration;
     }
 
-    public String getApiUrl() {
-        return apiUrl;
+    public String getAddress() {
+        return address;
     }
 
-    public void setApiUrl(String apiUrl) {
-        this.apiUrl = apiUrl;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "Song{" +
                 "songId=" + songId +
+                ", userId=" + userId +
                 ", title='" + title + '\'' +
                 ", artist='" + artist + '\'' +
                 ", album='" + album + '\'' +
                 ", duration=" + duration +
-                ", apiUrl='" + apiUrl + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

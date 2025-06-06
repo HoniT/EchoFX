@@ -11,6 +11,7 @@ module ge.mziuri.echofx {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafx.media;
 
     opens ge.mziuri.echofx to javafx.fxml;
     exports ge.mziuri.echofx;

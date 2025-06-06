@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.UserEntryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
 <children>
       <Text boundsType="VISUAL" layoutX="143.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" textAlignment="CENTER" wrappingWidth="669.373046875" AnchorPane.leftAnchor="387.26171875" AnchorPane.rightAnchor="387.259765625">
          <font>

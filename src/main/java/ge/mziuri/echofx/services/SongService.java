@@ -1,5 +1,8 @@
 package ge.mziuri.echofx.services;
 
+import ge.mziuri.echofx.Session;
+import ge.mziuri.echofx.database.models.Song;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,34 @@ public class SongService {
             ".m4a"
     };
 
+    // Returns file name from a full address
+    public static String getTitle(String file) {
+        File audioFile = new File(file);
+        String fileNameWithExt = audioFile.getName();
+
+        return fileNameWithExt.contains(".")
+                ? fileNameWithExt.substring(0, fileNameWithExt.lastIndexOf('.'))
+                : fileNameWithExt; // If there's no extension
+    }
+
+    // Translates a result set into a song object
+    private static Song getSong(String file) {
+        return new Song(Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 1.0f, file);
+    }
+
+    // Gets every song assigned to user
+    public static List<Song> getUserSongs() {
+        List<Song> songs = new ArrayList<>();
+        // Getting downloaded songs and turning them to Song objects
+        List<String> files = SongService.getDownloadedSongs();
+        for(String file : files) {
+            songs.add(getSong(file));
+        }
+
+        return songs;
+    }
+
+    public static List<String> audioFiles = new ArrayList<>();
     // Gets downloaded songs from default path
     public static List<String> getDownloadedSongs() {
         return getDownloadedSongs("src/main/resources/ge/mziuri/echofx/audio");
@@ -22,7 +53,6 @@ public class SongService {
 
     // Gets downloaded songs with given path
     public static List<String> getDownloadedSongs(String path) {
-        List<String> audioFiles = new ArrayList<>();
         // Getting audio files from resources
         File dir = new File(path);
         File[] files = dir.listFiles();

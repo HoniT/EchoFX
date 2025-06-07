@@ -5,14 +5,16 @@ import ge.mziuri.echofx.database.repository.UserRepository;
 import ge.mziuri.echofx.services.AudioPlayService;
 import ge.mziuri.echofx.services.EncryptionService;
 import ge.mziuri.echofx.services.SceneChangeService;
+import ge.mziuri.echofx.services.SongService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -124,7 +126,7 @@ public class MainController {
 
     // Adds every song to song display pane
     private void listSongs() {
-        List<Song> songs = UserRepository.getUserSongs();
+        List<Song> songs = SongService.getUserSongs();
         for(Song song : songs) {
             songDisplayPane.getChildren().add(song.createBanner());
         }
@@ -137,15 +139,36 @@ public class MainController {
         currentSongText.setText(title);
     }
 
-    private boolean pause = true;
     @FXML
     private void toggleMusicPause(ActionEvent event) {
-        // Changing text on button
-        pause = !pause;
-        Button button = (Button)event.getSource();
-        button.setText(pause ? "| |" : "|>");
         // Toggling music on/off
         AudioPlayService.toggleMusicPause();
+    }
+
+    @FXML
+    private void previousAudio() {
+        // Playing previous audio in dir
+        int index = SongService.audioFiles.indexOf(AudioPlayService.currentAudio);
+        if (index == -1) {
+            System.out.println("Item not found in the list.");
+        } else {
+            String previous = (index > 0) ? SongService.audioFiles.get(index - 1) : SongService.audioFiles.getLast();
+            AudioPlayService.playMusic(previous);
+            setCurrentSongText(SongService.getTitle(previous));
+        }
+    }
+
+    @FXML
+    private void nextAudio() {
+        // Playing next audio in dir
+        int index = SongService.audioFiles.indexOf(AudioPlayService.currentAudio);
+        if (index == -1) {
+            System.out.println("Item not found in the list.");
+        } else {
+            String next = (index < SongService.audioFiles.size() - 1) ? SongService.audioFiles.get(index + 1) : SongService.audioFiles.getFirst();
+            AudioPlayService.playMusic(next);
+            setCurrentSongText(SongService.getTitle(next));
+        }
     }
 
     // </editor-fold>

@@ -10,6 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Slider?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="960.0" style="-fx-background-color: AAA AAA;" VBox.vgrow="NEVER">
@@ -35,9 +36,15 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" text="&lt;" AnchorPane.leftAnchor="14.0" />
-            <Button layoutX="92.0" layoutY="5.0" mnemonicParsing="false" onAction="#toggleMusicPause" prefHeight="64.0" prefWidth="64.0" text="| |" AnchorPane.leftAnchor="92.0" />
-            <Button layoutX="171.0" layoutY="4.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" text="&gt;" AnchorPane.leftAnchor="171.0" />
+            <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#previousAudio" prefHeight="64.0" prefWidth="64.0" text="&lt;" AnchorPane.leftAnchor="14.0" />
+            <Button layoutX="92.0" layoutY="5.0" mnemonicParsing="false" onAction="#toggleMusicPause" prefHeight="64.0" prefWidth="64.0" text="| | / |>" AnchorPane.leftAnchor="92.0" />
+            <Button layoutX="171.0" layoutY="4.0" mnemonicParsing="false" onAction="#nextAudio" prefHeight="64.0" prefWidth="64.0" text="&gt;" AnchorPane.leftAnchor="171.0" />
+            <Text layoutX="660.0" layoutY="30.0" text="Volume:">
+               <font>
+                  <Font size="25.0"/>
+               </font>
+            </Text>
+            <Slider layoutX="700.0" layoutY="50.0" value="100.0" prefWidth="250.0" AnchorPane.rightAnchor="50.0"/>
          </children></AnchorPane>
       <VBox fx:id="songDisplayPane" fillWidth="false" prefHeight="335.0" prefWidth="960.0" spacing="15.0" style="-fx-background-color: CCC CCC;">
          <padding>

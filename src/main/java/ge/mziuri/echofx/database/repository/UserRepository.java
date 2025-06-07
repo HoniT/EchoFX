@@ -73,30 +73,6 @@ public class UserRepository {
         return true;
     }
 
-    // Translates a result set into a song object
-    private static Song getSong(String file) {
-        File audioFile = new File(file);
-        String fileNameWithExt = audioFile.getName();
-
-        String fileName = fileNameWithExt.contains(".")
-                ? fileNameWithExt.substring(0, fileNameWithExt.lastIndexOf('.'))
-                : fileNameWithExt; // If there's no extension
-
-        return new Song(Session.getUser().getUserId(), fileName, "DefaultArtist", "DefaultAlbum", 1.0f, file);
-    }
-
-    // Gets every song assigned to user
-    public static List<Song> getUserSongs() {
-        List<Song> songs = new ArrayList<>();
-        // Getting downloaded songs and turning them to Song objects
-        List<String> files = SongService.getDownloadedSongs();
-        for(String file : files) {
-            songs.add(getSong(file));
-        }
-
-        return songs;
-    }
-
     // Adds song to DB
     public static void addSong(Song song) {
         try {

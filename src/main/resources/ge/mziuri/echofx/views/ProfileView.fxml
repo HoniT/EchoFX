@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.ProfileController">
+    <children>
+        <Text layoutX="150" layoutY="150" fx:id="usernameText" text = "Username: ">
+            <font>
+                <Font size = "40"/>
+            </font>
+        </Text>
+        <Text layoutX="150" layoutY="220" fx:id="emailText" text = "Email: ">
+            <font>
+                <Font size = "40"/>
+            </font>
+        </Text>
+
+        <Button text="Back" onAction="#returnToHome"/>
+    </children>
+</AnchorPane>

@@ -28,14 +28,14 @@ public class MainController {
 
     // <editor-fold desc="New Scene Loading">
     @FXML
-    private void loadSignUpScene(ActionEvent event) throws IOException {
+    private void loadSignUpScene(ActionEvent event) {
         // Loading sign up view
         URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/SignUpView.fxml");
         SceneChangeService.changeScene(event, fxmlUrl, "EchoFX - Sign Up");
     }
 
     @FXML
-    private void loadLogInScene(ActionEvent event) throws IOException {
+    private void loadLogInScene(ActionEvent event) {
         // Loading sign up view
         URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/LogInView.fxml");
         SceneChangeService.changeScene(event, fxmlUrl, "EchoFX - Log In");
@@ -43,10 +43,15 @@ public class MainController {
     }
 
     public static MainController controller;
-    private void loadMainView(ActionEvent event) throws IOException {
+    public void loadMainView(ActionEvent event) {
         // Load FXML with FXMLLoader to access controller
         FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ge/mziuri/echofx/views/MainView.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Get the controller instance tied to the new scene
         MainController controller = loader.getController();
@@ -169,6 +174,12 @@ public class MainController {
             AudioPlayService.playMusic(next);
             setCurrentSongText(SongService.getTitle(next));
         }
+    }
+
+    @FXML
+    private void loadProfileView(ActionEvent event) {
+        URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/ProfileView.fxml");
+        SceneChangeService.changeScene(event, fxmlUrl, "EchoFX - Profile");
     }
 
     // </editor-fold>

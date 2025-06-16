@@ -53,6 +53,7 @@ public class SongService {
 
     // Gets downloaded songs with given path
     public static List<String> getDownloadedSongs(String path) {
+        audioFiles.clear();
         // Getting audio files from resources
         File dir = new File(path);
         File[] files = dir.listFiles();

@@ -153,26 +153,26 @@ public class MainController {
     @FXML
     private void previousAudio() {
         // Playing previous audio in dir
-        int index = SongService.audioFiles.indexOf(AudioPlayService.currentAudio);
+        int index = SongService.songs.indexOf(AudioPlayService.currentSong);
         if (index == -1) {
             System.out.println("Item not found in the list.");
         } else {
-            String previous = (index > 0) ? SongService.audioFiles.get(index - 1) : SongService.audioFiles.getLast();
-            AudioPlayService.playMusic(previous);
-            setCurrentSongText(SongService.getTitle(previous));
+            Song previous = (index > 0) ? SongService.songs.get(index - 1) : SongService.songs.getLast();
+            AudioPlayService.playMusic(previous.getAddress(), previous);
+            setCurrentSongText(previous.getTitle());
         }
     }
 
     @FXML
     private void nextAudio() {
         // Playing next audio in dir
-        int index = SongService.audioFiles.indexOf(AudioPlayService.currentAudio);
+        int index = SongService.songs.indexOf(AudioPlayService.currentSong);
         if (index == -1) {
             System.out.println("Item not found in the list.");
         } else {
-            String next = (index < SongService.audioFiles.size() - 1) ? SongService.audioFiles.get(index + 1) : SongService.audioFiles.getFirst();
-            AudioPlayService.playMusic(next);
-            setCurrentSongText(SongService.getTitle(next));
+            Song next = (index < SongService.songs.size() - 1) ? SongService.songs.get(index + 1) : SongService.songs.getFirst();
+            AudioPlayService.playMusic(next.getAddress(), next);
+            setCurrentSongText(next.getTitle());
         }
     }
 
@@ -180,6 +180,15 @@ public class MainController {
     private void loadProfileView(ActionEvent event) {
         URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/ProfileView.fxml");
         SceneChangeService.changeScene(event, fxmlUrl, "EchoFX - Profile");
+    }
+
+    @FXML
+    private Slider volumeSlider;
+
+    public void bindSliderToMedia() {
+        AudioPlayService.getMediaPlayer().volumeProperty().bind(
+                volumeSlider.valueProperty().divide(100.0)
+        );
     }
 
     // </editor-fold>

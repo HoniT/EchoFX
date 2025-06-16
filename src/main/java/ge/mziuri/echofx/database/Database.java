@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Database {
     // URL to connect to our DB
-    private static final String URL = "jdbc:mysql://localhost:3306/music_player";
+    private static final String URL = "jdbc:mysql://localhost:3306/echo_fx";
 
     // Makes connection to MySQL database
     public static Connection getConnection() throws SQLException {

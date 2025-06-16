@@ -1,15 +1,20 @@
 package ge.mziuri.echofx.services;
 
+import ge.mziuri.echofx.controllers.MainController;
+import ge.mziuri.echofx.database.models.Song;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class AudioPlayService {
     private static MediaPlayer mediaPlayer;
+
     public static String currentAudio = "";
+    public static Song currentSong;
 
     // Plays music from given address
-    public static void playMusic(String address) {
+    public static void playMusic(String address, Song song) {
         currentAudio = address;
+        currentSong = song;
         Media audio = new Media(address);
 
         // Stopping previous audio
@@ -17,6 +22,9 @@ public class AudioPlayService {
             mediaPlayer.stop();
         mediaPlayer = new MediaPlayer(audio);
         mediaPlayer.play();
+
+        // Binding volume slider to media player
+        MainController.controller.bindSliderToMedia();
     }
 
     // Pauses/unpauses music
@@ -26,7 +34,7 @@ public class AudioPlayService {
         else mediaPlayer.pause();
     }
 
-    public static void changeAudioVolume(double volume) {
-        mediaPlayer.setVolume(volume);
+    public static MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 }

@@ -72,21 +72,4 @@ public class UserRepository {
         }
         return true;
     }
-
-    // Adds song to DB
-    public static void addSong(Song song) {
-        try {
-            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("INSERT INTO songs (user_id, title, artist, album, duration, address) VALUES (?, ?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, song.getUserId());
-            preparedStatement.setString(2, song.getTitle());
-            preparedStatement.setString(3, song.getArtist());
-            preparedStatement.setString(4, song.getAlbum());
-            preparedStatement.setFloat(5, song.getDuration());
-            preparedStatement.setString(6, song.getAddress());
-            preparedStatement.execute();
-        }
-        catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

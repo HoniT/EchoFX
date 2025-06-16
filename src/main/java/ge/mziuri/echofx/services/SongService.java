@@ -30,12 +30,12 @@ public class SongService {
 
     // Translates a result set into a song object
     private static Song getSong(String file) {
-        return new Song(Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 1.0f, file);
+        return new Song(file, Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 1.0f, false);
     }
 
+    public static List<Song> songs = new ArrayList<>();
     // Gets every song assigned to user
     public static List<Song> getUserSongs() {
-        List<Song> songs = new ArrayList<>();
         // Getting downloaded songs and turning them to Song objects
         List<String> files = SongService.getDownloadedSongs();
         for(String file : files) {
@@ -45,7 +45,6 @@ public class SongService {
         return songs;
     }
 
-    public static List<String> audioFiles = new ArrayList<>();
     // Gets downloaded songs from default path
     public static List<String> getDownloadedSongs() {
         return getDownloadedSongs("src/main/resources/ge/mziuri/echofx/audio");
@@ -53,7 +52,7 @@ public class SongService {
 
     // Gets downloaded songs with given path
     public static List<String> getDownloadedSongs(String path) {
-        audioFiles.clear();
+        List<String> audioFiles = new ArrayList<>();
         // Getting audio files from resources
         File dir = new File(path);
         File[] files = dir.listFiles();

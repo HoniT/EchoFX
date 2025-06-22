@@ -1,5 +1,6 @@
 package ge.mziuri.echofx.services;
 
+import ge.mziuri.echofx.controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -46,5 +47,24 @@ public class SceneChangeService {
         stage.setTitle(title);
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public static FXMLLoader changeSceneWithController(ActionEvent event, URL newView, String title) {
+        // Load FXML with FXMLLoader to access controller
+        FXMLLoader loader = new FXMLLoader(newView);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Set the new scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.show();
+
+        return loader;
     }
 }

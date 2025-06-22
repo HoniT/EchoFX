@@ -1,6 +1,8 @@
 package ge.mziuri.echofx.controllers;
 
+import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.models.Song;
+import ge.mziuri.echofx.database.repository.SongRepository;
 import ge.mziuri.echofx.database.repository.UserRepository;
 import ge.mziuri.echofx.services.AudioPlayService;
 import ge.mziuri.echofx.services.EncryptionService;
@@ -14,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DragEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,24 +45,12 @@ public class MainController {
 
     public static MainController controller;
     public void loadMainView(ActionEvent event) {
-        // Load FXML with FXMLLoader to access controller
-        FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/ge/mziuri/echofx/views/MainView.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/MainView.fxml");
+        FXMLLoader loader = SceneChangeService.changeSceneWithController(event, fxmlUrl, "EchoFX");
 
         // Get the controller instance tied to the new scene
         MainController controller = loader.getController();
         MainController.controller = controller;
-
-        // Set the new scene
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("EchoFX");
-        stage.show();
 
         // Initialize scene with songs
         controller.listSongs();
@@ -105,7 +94,7 @@ public class MainController {
 
     @FXML
     // Signup logic
-    private void onSignup(ActionEvent event) throws SQLException, IOException {
+    private void onSignup(ActionEvent event) {
         // Retrieving info from text fields
         String username = usernameFieldSignup.getText();
         String email = emailFieldSignup.getText();
@@ -126,12 +115,29 @@ public class MainController {
 
     // <editor-fold desc="Main View">
 
+    public enum SongTypes {
+        HOME,
+        FAVORITES,
+        INTERNET
+    }
+
+    private static SongTypes currentListing = SongTypes.HOME;
+
     @FXML
     private VBox songDisplayPane;
 
     // Adds every song to song display pane
-    private void listSongs() {
+    @FXML
+    public void listSongs() {
+        songDisplayPane.getChildren().clear();
         List<Song> songs = SongService.getUserSongs();
+        for(Song song : songs) {
+            songDisplayPane.getChildren().add(song.createBanner());
+        }
+        MainController.currentListing = SongTypes.HOME;
+    }
+
+    private void listSongs(List<Song> songs) {
         for(Song song : songs) {
             songDisplayPane.getChildren().add(song.createBanner());
         }
@@ -152,12 +158,22 @@ public class MainController {
 
     @FXML
     private void previousAudio() {
+        List<Song> songs;
+        switch(MainController.currentListing) {
+            case FAVORITES:
+                songs = SongRepository.favoriteSongs;
+                break;
+            default:
+                songs = SongService.songs;
+                break;
+        }
+
         // Playing previous audio in dir
-        int index = SongService.songs.indexOf(AudioPlayService.currentSong);
+        int index = songs.indexOf(AudioPlayService.currentSong);
         if (index == -1) {
             System.out.println("Item not found in the list.");
         } else {
-            Song previous = (index > 0) ? SongService.songs.get(index - 1) : SongService.songs.getLast();
+            Song previous = (index > 0) ? songs.get(index - 1) : songs.getLast();
             AudioPlayService.playMusic(previous.getAddress(), previous);
             setCurrentSongText(previous.getTitle());
         }
@@ -165,15 +181,32 @@ public class MainController {
 
     @FXML
     private void nextAudio() {
+        if(Session.getSkipsThisHour() >= 4 && !Session.getUser().isPremium()) {
+            System.out.println("Maximum amount of skips reached! Restart the application for an additional 4 skips.");
+            return;
+        }
+
+        List<Song> songs;
+        switch(MainController.currentListing) {
+            case FAVORITES:
+                songs = SongRepository.favoriteSongs;
+                break;
+            default:
+                songs = SongService.songs;
+                break;
+        }
+
         // Playing next audio in dir
-        int index = SongService.songs.indexOf(AudioPlayService.currentSong);
+        int index = songs.indexOf(AudioPlayService.currentSong);
         if (index == -1) {
             System.out.println("Item not found in the list.");
         } else {
-            Song next = (index < SongService.songs.size() - 1) ? SongService.songs.get(index + 1) : SongService.songs.getFirst();
+            Song next = (index < songs.size() - 1) ? songs.get(index + 1) : songs.getFirst();
             AudioPlayService.playMusic(next.getAddress(), next);
             setCurrentSongText(next.getTitle());
         }
+
+        Session.setSkipsThisHour(Session.getSkipsThisHour() + 1);
     }
 
     @FXML
@@ -189,6 +222,25 @@ public class MainController {
         AudioPlayService.getMediaPlayer().volumeProperty().bind(
                 volumeSlider.valueProperty().divide(100.0)
         );
+    }
+
+    @FXML
+    private void showFavoriteSongs() {
+        // Deleting old songs and showing only favorite songs
+        songDisplayPane.getChildren().clear();
+        MainController.controller.listSongs(SongRepository.getFavoriteSongs());
+        MainController.currentListing = SongTypes.FAVORITES;
+    }
+
+    @FXML
+    private void turnMusicOff() {
+        AudioPlayService.destroyMedia();
+        setCurrentSongText("");
+    }
+
+    public void openPlaylistPanel(ActionEvent event) {
+        URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/PlaylistView.fxml");
+        SceneChangeService.changeScene(event, fxmlUrl);
     }
 
     // </editor-fold>

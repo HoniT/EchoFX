@@ -27,6 +27,13 @@ public class AudioPlayService {
         MainController.controller.bindSliderToMedia();
     }
 
+    // Turns music off
+    public static void destroyMedia() {
+        if(mediaPlayer == null) return;
+        mediaPlayer.stop();
+        mediaPlayer = null;
+    }
+
     // Pauses/unpauses music
     public static void toggleMusicPause() {
         if(mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED)

@@ -12,27 +12,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
-   <children>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0">
       <AnchorPane prefHeight="60.0" prefWidth="960.0" style="-fx-background-color: AAA AAA;" VBox.vgrow="NEVER">
-         <children>
             <Text layoutX="51.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" wrappingWidth="106.373046875">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
             <ImageView fitHeight="51.0" fitWidth="59.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
                   <Image url="@../images/Logo.png" />
-               </image>
             </ImageView>
             <TextField layoutX="261.0" layoutY="10.0" prefHeight="40.0" prefWidth="439.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="10.0" />
             <Button layoutX="906.0" layoutY="9.0" mnemonicParsing="false" onAction="#loadProfileView" prefHeight="40.0" prefWidth="40.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="9.0" />
-         </children>
       </AnchorPane>
       <AnchorPane prefHeight="75.0" prefWidth="960.0" style="-fx-background-color: BBB BBB;" VBox.vgrow="NEVER">
-         <children>
-            <Text fx:id="currentSongText" layoutX="246.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName" textAlignment="CENTER" wrappingWidth="379.13671875" AnchorPane.leftAnchor="246.0">
+            <Text fx:id="currentSongText" layoutX="251.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="408.13671875" AnchorPane.leftAnchor="251.0">
                <font>
                   <Font size="40.0" />
                </font>
@@ -46,16 +40,17 @@
                </font>
             </Text>
             <Slider fx:id="volumeSlider" layoutX="700.0" layoutY="50.0" prefWidth="250.0" value="100.0" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="50.0" />
-         </children></AnchorPane>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="335.0" prefWidth="960.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="ALWAYS" fitToHeight="true" fitToWidth="true">
-         <content>
-            <VBox fx:id="songDisplayPane" prefHeight="333.0" prefWidth="945.0" spacing="15.0" fillWidth="false" style="-fx-background-color: #CCCCCC;">
+            <Button layoutX="920.0" layoutY="7.0" mnemonicParsing="false" onAction="#turnMusicOff" prefHeight="25.0" prefWidth="26.0" text="X" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="7.0" />
+         </AnchorPane>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="335.0" prefWidth="960.0" style="-fx-background-color: #CCCCCC;" VBox.vgrow="ALWAYS">
+            <VBox fx:id="songDisplayPane" fillWidth="false" prefHeight="333.0" prefWidth="945.0" spacing="15.0" style="-fx-background-color: #CCCCCC;">
                <padding>
                   <Insets bottom="15.0" left="15.0" top="15.0" />
                </padding>
             </VBox>
-         </content>
       </ScrollPane>
-      <AnchorPane prefHeight="75.0" prefWidth="960.0" style="-fx-background-color: BBB BBB;" VBox.vgrow="NEVER" />
-   </children>
+      <AnchorPane prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #AAAAAA;" VBox.vgrow="NEVER">
+            <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#showFavoriteSongs" prefHeight="33.0" prefWidth="302.0" text="Favorites" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="644.0" />
+            <Button layoutX="644.0" layoutY="10.0" mnemonicParsing="false" onAction="#listSongs" prefHeight="33.0" prefWidth="302.0" text="Home" AnchorPane.leftAnchor="644.0" AnchorPane.rightAnchor="14.0" />
+      </AnchorPane>
 </VBox>

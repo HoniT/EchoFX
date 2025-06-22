@@ -8,15 +8,17 @@ public class User {
     private String email;
     private String passwordHash;
     private Date createdAt;
+    private boolean premium;
 
     public User() {}
 
-    public User(int userId, String username, String email, String passwordHash, Date createdAt) {
+    public User(int userId, String username, String email, String passwordHash, Date createdAt, boolean premium) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
+        this.premium = premium;
     }
 
     public int getUserId() {
@@ -59,6 +61,14 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public boolean isPremium() {
+        return premium;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -67,6 +77,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", createdAt=" + createdAt +
+                ", premium=" + premium +
                 '}';
     }
 }

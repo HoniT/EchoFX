@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class Song {
+    private int song_id;
     private String address;
     private int userId;
     private String title;
@@ -18,7 +19,8 @@ public class Song {
     private float duration;
     private boolean is_favorite;
 
-    public Song(String address, int userId, String title, String artist, String album, float duration, boolean is_favorite) {
+    public Song(int song_id, String address, int userId, String title, String artist, String album, float duration, boolean is_favorite) {
+        this.song_id = song_id;
         this.address = address;
         this.userId = userId;
         this.title = title;
@@ -44,12 +46,17 @@ public class Song {
                 MainController.controller.setCurrentSongText(this.title);
             });
             controller.setFavoriteAction(this, () -> SongRepository.addFavoriteSong(this), () -> SongRepository.removeFavoriteSong(this));
+            controller.playlistButton.setOnAction(event -> MainController.controller.openPlaylistPanel(event));
 
             return banner;
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return new AnchorPane(); // Fallback
         }
+    }
+
+    public int getSong_id() {
+        return song_id;
     }
 
     public int getUserId() {

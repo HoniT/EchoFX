@@ -6,13 +6,11 @@ public class Playlist {
     private int playlistId;
     private int userId;
     private String name;
-    private Date createAt;
 
-    public Playlist(int playlistId, int userId, String name, Date createAt) {
+    public Playlist(int playlistId, int userId, String name) {
         this.playlistId = playlistId;
         this.userId = userId;
         this.name = name;
-        this.createAt = createAt;
     }
 
     public int getPlaylistId() {
@@ -39,13 +37,7 @@ public class Playlist {
         this.name = name;
     }
 
-    public Date getCreateAt() {
-        return createAt;
-    }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
 
     @Override
     public String toString() {
@@ -53,7 +45,6 @@ public class Playlist {
                 "playlistId=" + playlistId +
                 ", userId=" + userId +
                 ", name='" + name + '\'' +
-                ", createAt=" + createAt +
                 '}';
     }
 }

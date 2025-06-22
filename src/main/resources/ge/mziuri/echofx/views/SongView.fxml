@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="73.0" prefWidth="348.0" style="-fx-background-color: #666666;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.SongController">
+<AnchorPane prefHeight="73.0" prefWidth="408.0" style="-fx-background-color: #666666;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.SongController">
    <children>
       <Text fx:id="titleText" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName" wrappingWidth="198.13671875">
          <font>
@@ -25,11 +25,17 @@
          </image>
       </ImageView>
       <Button fx:id="playButton" layoutX="224.0" layoutY="11.0" mnemonicParsing="false" opacity="0.0" prefHeight="55.0" prefWidth="62.0" />
-      <ImageView fitHeight="47.0" fitWidth="49.0" fx:id="starImage" layoutX="289.0" layoutY="13.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="starImage" fitHeight="47.0" fitWidth="49.0" layoutX="289.0" layoutY="13.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/FavoritesStar.png" />
          </image>
       </ImageView>
-      <Button layoutX="286.0" layoutY="9.0" fx:id="favoriteButton" mnemonicParsing="false" opacity="0.0" prefHeight="55.0" prefWidth="55.0" />
+      <Button fx:id="favoriteButton" layoutX="286.0" layoutY="9.0" mnemonicParsing="false" opacity="0.0" prefHeight="55.0" prefWidth="55.0" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="345.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/PlaylistIcon.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="playlistButton" layoutX="345.0" layoutY="13.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

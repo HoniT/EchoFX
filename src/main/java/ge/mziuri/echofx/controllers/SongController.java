@@ -16,6 +16,8 @@ public class SongController {
     private Text artistText;
     @FXML
     private Button playButton;
+    @FXML
+    public Button playlistButton;
 
     @FXML
     private Button favoriteButton;

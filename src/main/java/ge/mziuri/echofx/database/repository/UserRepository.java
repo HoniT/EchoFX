@@ -3,6 +3,7 @@ package ge.mziuri.echofx.database.repository;
 import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.Database;
 import ge.mziuri.echofx.database.models.Song;
+import ge.mziuri.echofx.database.models.User;
 import ge.mziuri.echofx.services.SongService;
 
 import java.io.File;
@@ -55,13 +56,14 @@ public class UserRepository {
             }
 
             // Adding user
-            preparedStatement = connection.prepareStatement("INSERT INTO users (username, email, password_hash, created_at) VALUES (?, ?, ?, ?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO users (username, email, password_hash, created_at, premium) VALUES (?, ?, ?, ?, ?)");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, passwordHash);
             // Getting and setting current date
             Date date = Date.valueOf(LocalDate.now());
             preparedStatement.setDate(4, date);
+            preparedStatement.setBoolean(5, false);
             preparedStatement.execute();
 
             // Logging into new user
@@ -71,5 +73,18 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
         return true;
+    }
+
+    public static void makePremium(User user) {
+        try {
+            // Updating row in DB
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("UPDATE users SET premium = 1 WHERE user_id = ?");
+            preparedStatement.setInt(1, user.getUserId());
+            preparedStatement.execute();
+
+            user.setPremium(true);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

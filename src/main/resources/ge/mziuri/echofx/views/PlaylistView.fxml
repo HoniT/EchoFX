@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.PlaylistController">
-   <children>
-      <AnchorPane prefHeight="101.0" prefWidth="960.0" style="-fx-background-color: #BBBBBB;">
-         <children>
-            <Text fx:id="songNameText" layoutX="392.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <Button layoutX="778.0" layoutY="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="156.0" text="Add to new playlist" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="26.0" />
-            <TextField fx:id="newPlaylistNameField" layoutX="778.0" layoutY="14.0" promptText="New playlist name" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="33.0" />
-         </children>
-      </AnchorPane>
-      <ScrollPane prefHeight="447.0" prefWidth="960.0" VBox.vgrow="ALWAYS">
-         <content>
-            <VBox fx:id="playlistDisplayPane" prefHeight="443.0" prefWidth="959.0" />
-         </content>
-      </ScrollPane>
-   </children>
-</VBox>
+<AnchorPane prefHeight="73.0" prefWidth="408.0" style="-fx-background-color: #666666;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx" fx:controller="ge.mziuri.echofx.controllers.PlaylistController">
+    <Text fx:id="nameText" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName" wrappingWidth="198.13671875">
+        <font>
+            <Font size="26.0" />
+        </font>
+    </Text>
+</AnchorPane>

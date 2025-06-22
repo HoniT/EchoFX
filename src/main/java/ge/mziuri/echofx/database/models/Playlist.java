@@ -1,6 +1,10 @@
 package ge.mziuri.echofx.database.models;
 
-import java.util.Date;
+import ge.mziuri.echofx.controllers.PlaylistController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class Playlist {
     private int playlistId;
@@ -11,6 +15,21 @@ public class Playlist {
         this.playlistId = playlistId;
         this.userId = userId;
         this.name = name;
+    }
+
+    public AnchorPane createBanner() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ge/mziuri/echofx/views/PlaylistView.fxml"));
+            AnchorPane banner = loader.load();
+            PlaylistController controller = loader.getController();
+            controller.setNameText(this.name);
+
+
+            return banner;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public int getPlaylistId() {

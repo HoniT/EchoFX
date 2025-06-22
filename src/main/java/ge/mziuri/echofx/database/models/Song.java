@@ -46,7 +46,7 @@ public class Song {
                 MainController.controller.setCurrentSongText(this.title);
             });
             controller.setFavoriteAction(this, () -> SongRepository.addFavoriteSong(this), () -> SongRepository.removeFavoriteSong(this));
-            controller.playlistButton.setOnAction(event -> MainController.controller.openPlaylistPanel(event));
+            controller.playlistButton.setOnAction(event -> MainController.controller.openPlaylistPanel(event, this));
 
             return banner;
         } catch (IOException e) {

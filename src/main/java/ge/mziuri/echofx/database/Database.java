@@ -9,7 +9,11 @@ public class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/echo_fx";
 
     // Makes connection to MySQL database
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, "root", "root");
+    public static Connection getConnection(){
+        try {
+            return DriverManager.getConnection(URL, "root", "root");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

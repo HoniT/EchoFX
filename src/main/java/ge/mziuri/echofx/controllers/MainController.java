@@ -11,14 +11,10 @@ import ge.mziuri.echofx.services.SongService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -238,9 +234,12 @@ public class MainController {
         setCurrentSongText("");
     }
 
-    public void openPlaylistPanel(ActionEvent event) {
-        URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/PlaylistView.fxml");
-        SceneChangeService.changeScene(event, fxmlUrl);
+    public void openPlaylistPanel(ActionEvent event, Song song) {
+        URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/PlaylistsView.fxml");
+        FXMLLoader loader = SceneChangeService.changeSceneWithController(event, fxmlUrl, "EchoFX - Playlists");
+
+        PlaylistsController playlistsController = loader.getController();
+        playlistsController.setSongNameText(song.getTitle());
     }
 
     // </editor-fold>

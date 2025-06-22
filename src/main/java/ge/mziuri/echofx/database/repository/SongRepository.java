@@ -100,6 +100,26 @@ public class SongRepository {
         }
     }
 
+    public static List<Playlist> getPlaylists() {
+        List<Playlist> playlists = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("SELECT * FROM playlists WHERE user_id = ?");
+            preparedStatement.setInt(1, Session.getUser().getUserId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+                playlists.add(new Playlist(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return playlists;
+    }
+
     public static void addPlaylist(String name) {
         try {
             PreparedStatement preparedStatement = Database.getConnection().prepareStatement("INSERT INTO playlists (user_id, name) VALUES (?, ?)");

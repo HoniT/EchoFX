@@ -118,7 +118,7 @@ public class MainController {
     private static SongTypes currentListing = SongTypes.HOME;
 
     @FXML
-    private VBox songDisplayPane;
+    public VBox songDisplayPane;
 
     // Adds every song to song display pane
     @FXML
@@ -129,6 +129,7 @@ public class MainController {
             songDisplayPane.getChildren().add(song.createBanner());
         }
         MainController.currentListing = SongTypes.HOME;
+        onPlaylists = false;
     }
 
     public void listSongs(List<Song> songs) {
@@ -219,6 +220,7 @@ public class MainController {
         songDisplayPane.getChildren().clear();
         MainController.controller.listSongs(SongRepository.getFavoriteSongs());
         MainController.currentListing = SongTypes.FAVORITES;
+        onPlaylists = false;
     }
 
     @FXML
@@ -235,10 +237,12 @@ public class MainController {
         playlistViewController.setSongNameText(song);
     }
 
+    public boolean onPlaylists = false;
     @FXML
     private void showPlaylists() {
         songDisplayPane.getChildren().clear();
         PlaylistViewController.displayPlaylists(songDisplayPane, false);
+        onPlaylists = true;
     }
 
     // </editor-fold>

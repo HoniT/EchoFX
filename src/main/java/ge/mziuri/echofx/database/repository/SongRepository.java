@@ -184,7 +184,11 @@ public class SongRepository {
 
     public static void deletePlaylist(int playlist_id) {
         try {
-            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("DELETE FROM playlists WHERE playlist_id = ?");
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("DELETE FROM playlist_songs WHERE playlist_id = ?");
+            preparedStatement.setInt(1, playlist_id);
+            preparedStatement.execute();
+
+            preparedStatement = Database.getConnection().prepareStatement("DELETE FROM playlists WHERE playlist_id = ?");
             preparedStatement.setInt(1, playlist_id);
             preparedStatement.execute();
         } catch (SQLException e) {

@@ -50,8 +50,8 @@
         </VBox>
   </ScrollPane>
   <AnchorPane prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #AAAAAA;" VBox.vgrow="NEVER">
-        <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#showFavoriteSongs" prefHeight="33.0" prefWidth="302.0" text="Favorites" AnchorPane.leftAnchor="14.0" />
-        <Button layoutX="644.0" layoutY="10.0" mnemonicParsing="false" onAction="#listSongs" prefHeight="33.0" prefWidth="302.0" text="Home" AnchorPane.rightAnchor="14.0" />
-        <Button layoutX="329.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPlaylists" prefHeight="33.0" prefWidth="302.0" text="Playlists" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="329.0" />
+        <Button layoutX="329.0" layoutY="10.0" mnemonicParsing="false" onAction="#showFavoriteSongs" prefHeight="33.0" prefWidth="302.0" text="Favorites" AnchorPane.rightAnchor="14.0" />
+        <Button layoutX="644.0" layoutY="10.0" mnemonicParsing="false" onAction="#listSongs" prefHeight="33.0" prefWidth="302.0" text="Home" AnchorPane.leftAnchor="14.0" />
+        <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPlaylists" prefHeight="33.0" prefWidth="302.0" text="Playlists" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="329.0" />
   </AnchorPane>
 </VBox>

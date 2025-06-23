@@ -1,6 +1,7 @@
 package ge.mziuri.echofx.database.models;
 
 import ge.mziuri.echofx.controllers.MainController;
+import ge.mziuri.echofx.controllers.PlaylistViewController;
 import ge.mziuri.echofx.controllers.SongController;
 import ge.mziuri.echofx.database.repository.SongRepository;
 import ge.mziuri.echofx.services.AudioPlayService;
@@ -46,7 +47,14 @@ public class Song {
                 MainController.controller.setCurrentSongText(this.title);
             });
             controller.setFavoriteAction(this, () -> SongRepository.addFavoriteSong(this), () -> SongRepository.removeFavoriteSong(this));
-            controller.playlistButton.setOnAction(event -> MainController.controller.openPlaylistPanel(event, this));
+            controller.playlistButton.setOnAction(event -> {
+                if(MainController.controller.onPlaylists) {
+                    SongRepository.removeSongFromPlaylist(PlaylistViewController.currentPlaylistId, this);
+                    MainController.controller.listSongs(SongRepository.getPlaylistSongs(PlaylistViewController.currentPlaylistId));
+                }
+                else
+                    MainController.controller.openPlaylistPanel(event, this);
+            });
 
             return banner;
         } catch (IOException e) {

@@ -5,11 +5,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="73.0" prefWidth="279.0" style="-fx-background-color: #666666;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.PlaylistController">
+<AnchorPane prefHeight="73.0" prefWidth="382.0" style="-fx-background-color: #666666;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.PlaylistController">
     <Text fx:id="nameText" layoutX="8.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PlaylistName" wrappingWidth="198.13671875">
         <font>
             <Font size="26.0" />
         </font>
     </Text>
    <Button fx:id="addButton" layoutX="220.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="+" />
+   <Button fx:id="deleteButton" layoutX="275.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: AAA AAA;" text="Delete" />
 </AnchorPane>

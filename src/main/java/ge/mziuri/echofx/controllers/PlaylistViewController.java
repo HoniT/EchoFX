@@ -12,6 +12,8 @@ import javafx.scene.text.Text;
 import java.util.List;
 
 public class PlaylistViewController {
+    public static int currentPlaylistId = 0;
+
     @FXML
     private VBox playlistDisplayPane;
     @FXML
@@ -33,9 +35,11 @@ public class PlaylistViewController {
     }
 
     public static Song currentSong;
+    public static VBox playlistsPanel;
     public void setSongNameText(Song song) {
         currentSong = song;
         songNameText.setText(song.getTitle());
+        playlistsPanel = this.playlistDisplayPane;
     }
 
     public void addNewPlaylist() {

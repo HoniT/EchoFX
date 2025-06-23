@@ -28,8 +28,15 @@ public class Playlist {
             controller.setNameText(this.name);
             if(onPlaylistsView)
                 controller.addButton.setOnAction(_ -> SongRepository.addSongToPlaylist(this.playlistId, PlaylistViewController.currentSong));
-            else
+            else {
                 controller.addButton.setOnAction(_ -> MainController.controller.listSongs(SongRepository.getPlaylistSongs(this.playlistId)));
+                PlaylistViewController.currentPlaylistId = this.playlistId;
+            }
+            controller.deleteButton.setOnAction(_ -> {
+                SongRepository.deletePlaylist(this.playlistId);
+                // Refreshing list
+                PlaylistViewController.displayPlaylists((onPlaylistsView) ? PlaylistViewController.playlistsPanel : MainController.controller.songDisplayPane, onPlaylistsView);
+            });
 
             return banner;
         } catch (IOException e) {

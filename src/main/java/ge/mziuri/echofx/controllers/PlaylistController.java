@@ -11,6 +11,9 @@ public class PlaylistController {
     @FXML
     public Button addButton;
 
+    @FXML
+    public Button deleteButton;
+
     public void setNameText(String name) {
         nameText.setText(name);
     }

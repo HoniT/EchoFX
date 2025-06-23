@@ -1,6 +1,5 @@
 package ge.mziuri.echofx.services;
 
-import ge.mziuri.echofx.controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,7 +18,7 @@ public class SceneChangeService {
         }
 
         // Loads the view
-        Parent root = null;
+        Parent root;
         try {
             root = FXMLLoader.load(newView);
         } catch (IOException e) {
@@ -34,7 +33,7 @@ public class SceneChangeService {
     public static FXMLLoader changeSceneWithController(ActionEvent event, URL newView, String title) {
         // Load FXML with FXMLLoader to access controller
         FXMLLoader loader = new FXMLLoader(newView);
-        Parent root = null;
+        Parent root;
         try {
             root = loader.load();
         } catch (IOException e) {

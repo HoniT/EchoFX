@@ -40,7 +40,7 @@ public class SongController {
         // If we have this song in favorites making the starts opacity 1
         if(SongRepository.checkFavoriteSong(song)) starImage.setOpacity(1);
 
-        favoriteButton.setOnAction((action) -> {
+        favoriteButton.setOnAction(_ -> {
             starImage.setOpacity(starImage.getOpacity() - .75f);
             // Starting opacity of star is .15f (only slightly visible - disabled), if we subtract .75f it becomes <0, and we'll set it to 1 (meaning enabled)
             if(starImage.getOpacity() < 0) {

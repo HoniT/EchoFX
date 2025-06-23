@@ -10,30 +10,26 @@
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.PlaylistViewController">
-   <children>
-      <AnchorPane prefHeight="101.0" prefWidth="960.0" style="-fx-background-color: #BBBBBB;">
-         <children>
-            <Text fx:id="songNameText" layoutX="268.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName" textAlignment="CENTER" wrappingWidth="423.87109375" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.12890625">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <Button layoutX="778.0" layoutY="49.0" mnemonicParsing="false" onAction="#addNewPlaylist" prefHeight="27.0" prefWidth="156.0" text="Add new playlist" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="26.0" />
-            <TextField fx:id="newPlaylistNameField" layoutX="778.0" layoutY="14.0" promptText="New playlist name" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="33.0" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="48.0" prefWidth="48.0" text="X" />
-            <Text layoutX="74.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add To Playlist:" wrappingWidth="203.876953125">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <ScrollPane prefHeight="447.0" prefWidth="960.0" VBox.vgrow="ALWAYS">
-            <VBox fx:id="playlistDisplayPane" fillWidth="false" prefHeight="443.0" prefWidth="959.0" spacing="15.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" top="15.0" />
-               </padding>
-            </VBox>
-      </ScrollPane>
-   </children>
+   <AnchorPane prefHeight="101.0" prefWidth="960.0" style="-fx-background-color: #BBBBBB;">
+      <Text fx:id="songNameText" layoutX="268.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SongName" textAlignment="CENTER" wrappingWidth="423.87109375" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="268.12890625">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="778.0" layoutY="49.0" mnemonicParsing="false" onAction="#addNewPlaylist" prefHeight="27.0" prefWidth="156.0" text="Add new playlist" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="26.0" />
+      <TextField fx:id="newPlaylistNameField" layoutX="778.0" layoutY="14.0" promptText="New playlist name" AnchorPane.leftAnchor="778.0" AnchorPane.rightAnchor="33.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="48.0" prefWidth="48.0" text="X" />
+      <Text layoutX="74.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add To Playlist:" wrappingWidth="203.876953125">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+   </AnchorPane>
+   <ScrollPane prefHeight="447.0" prefWidth="960.0" VBox.vgrow="ALWAYS">
+      <VBox fx:id="playlistDisplayPane" fillWidth="false" prefHeight="443.0" prefWidth="959.0" spacing="15.0">
+         <padding>
+            <Insets bottom="15.0" left="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </ScrollPane>
 </VBox>

@@ -2,19 +2,14 @@ package ge.mziuri.echofx.database.repository;
 
 import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.Database;
-import ge.mziuri.echofx.database.models.Song;
 import ge.mziuri.echofx.database.models.User;
-import ge.mziuri.echofx.services.SongService;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRepository {
     // Gets user info from database

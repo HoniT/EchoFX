@@ -7,33 +7,33 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.ProfileController">
-    <children>
-        <Text layoutX="410" layoutY="50" text="Profile">
-            <font>
-                <Font size="50" />
-            </font>
-        </Text>
-        <Text fx:id="usernameText" layoutX="150" layoutY="100" text="Username: ">
-            <font>
-                <Font size="40" />
-            </font>
-        </Text>
-        <Text fx:id="emailText" layoutX="150" layoutY="170" text="Email: ">
-            <font>
-                <Font size="40" />
-            </font>
-        </Text>
+    <Text layoutX="410" layoutY="50" text="Profile">
+        <font>
+            <Font size="50" />
+        </font>
+    </Text>
+    <Text fx:id="usernameText" layoutX="150" layoutY="100" text="Username: ">
+        <font>
+            <Font size="40" />
+        </font>
+    </Text>
+    <Text fx:id="emailText" layoutX="150" layoutY="170" text="Email: ">
+        <font>
+            <Font size="40" />
+        </font>
+    </Text>
+    <Button layoutX="150.0" layoutY="424.0" onAction="#returnToHome" prefHeight="80" prefWidth="300" text="Back To Home" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="510.0" />
+    <Button layoutX="595.0" layoutY="424.0" mnemonicParsing="false" onAction="#logout" prefHeight="80.0" prefWidth="275.0" style="-fx-background-color: AAA AAA;" text="Logout" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="150.0" />
 
-        <Button layoutX="150.0" layoutY="424.0" onAction="#returnToHome" prefHeight="80" prefWidth="300" text="Back To Home" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="510.0" />
-      <Button layoutX="595.0" layoutY="424.0" mnemonicParsing="false" onAction="#logout" prefHeight="80.0" prefWidth="275.0" style="-fx-background-color: B22222;" text="Logout" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="150.0" />
-      <Text layoutX="150.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy Premium" wrappingWidth="197.265625">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Text>
-      <TextField fx:id="cardNumber" layoutX="150.0" layoutY="275.0" prefHeight="41.0" prefWidth="383.0" promptText="Card Number" />
-      <TextField fx:id="ccvCode" layoutX="150.0" layoutY="326.0" prefHeight="41.0" prefWidth="165.0" promptText="CVV" />
-      <TextField fx:id="expirationDate" layoutX="336.0" layoutY="326.0" prefHeight="41.0" prefWidth="197.0" promptText="Expiration Date" />
-      <Button onAction="#buyPremium" layoutX="551.0" layoutY="290.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="107.0" text="Buy" />
-    </children>
+    <AnchorPane fx:id="creditCardInfoPane" layoutX="133.0" layoutY="196.0" prefHeight="200.0" prefWidth="578.0" style="-fx-background-color: AAA AAA;">
+        <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy Premium" wrappingWidth="197.265625">
+           <font>
+              <Font size="31.0" />
+           </font>
+        </Text>
+        <TextField fx:id="cardNumber" layoutX="14.0" layoutY="55.0" prefHeight="41.0" prefWidth="383.0" promptText="Card Number" />
+        <TextField fx:id="ccvCode" layoutX="14.0" layoutY="100.0" prefHeight="41.0" prefWidth="165.0" promptText="CVV" />
+        <TextField fx:id="expirationDate" layoutX="200.0" layoutY="100.0" prefHeight="41.0" prefWidth="197.0" promptText="Expiration Date" />
+        <Button layoutX="439.0" layoutY="70.0" mnemonicParsing="false" onAction="#buyPremium" prefHeight="53.0" prefWidth="107.0" text="Buy" />
+    </AnchorPane>
 </AnchorPane>

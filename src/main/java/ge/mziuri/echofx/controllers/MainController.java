@@ -16,10 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 public class MainController {
 
@@ -72,7 +71,7 @@ public class MainController {
 
     @FXML
     // Login logic
-    private void onLogin(ActionEvent event) throws SQLException, IOException {
+    private void onLogin(ActionEvent event){
         // Retrieving info from text fields
         String username = usernameFieldLogin.getText();
         String password = passwordFieldLogin.getText();
@@ -113,8 +112,7 @@ public class MainController {
 
     public enum SongTypes {
         HOME,
-        FAVORITES,
-        INTERNET
+        FAVORITES
     }
 
     private static SongTypes currentListing = SongTypes.HOME;
@@ -148,7 +146,7 @@ public class MainController {
     }
 
     @FXML
-    private void toggleMusicPause(ActionEvent event) {
+    private void toggleMusicPause() {
         // Toggling music on/off
         AudioPlayService.toggleMusicPause();
     }
@@ -156,13 +154,10 @@ public class MainController {
     @FXML
     private void previousAudio() {
         List<Song> songs;
-        switch(MainController.currentListing) {
-            case FAVORITES:
-                songs = SongRepository.favoriteSongs;
-                break;
-            default:
-                songs = SongService.songs;
-                break;
+        if (Objects.requireNonNull(MainController.currentListing) == SongTypes.FAVORITES) {
+            songs = SongRepository.favoriteSongs;
+        } else {
+            songs = SongService.songs;
         }
 
         // Playing previous audio in dir
@@ -184,13 +179,10 @@ public class MainController {
         }
 
         List<Song> songs;
-        switch(MainController.currentListing) {
-            case FAVORITES:
-                songs = SongRepository.favoriteSongs;
-                break;
-            default:
-                songs = SongService.songs;
-                break;
+        if (Objects.requireNonNull(MainController.currentListing) == SongTypes.FAVORITES) {
+            songs = SongRepository.favoriteSongs;
+        } else {
+            songs = SongService.songs;
         }
 
         // Playing next audio in dir

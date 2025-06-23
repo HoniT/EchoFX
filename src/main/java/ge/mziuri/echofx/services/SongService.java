@@ -3,8 +3,6 @@ package ge.mziuri.echofx.services;
 import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.models.Song;
 import ge.mziuri.echofx.database.repository.SongRepository;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -35,15 +33,6 @@ public class SongService {
 
     // Returns a song from a file address
     private static Song getSong(String file) {
-        Media media = new Media(file);
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setOnReady(() -> {
-            double minutes = media.getDuration().toMinutes();
-
-            // Round to 2 decimal places
-            float durationInMinutes = Math.round(minutes * 100f) / 100f;
-        });
-
         return new Song(SongRepository.retrieveSongId(file), file, Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 0.00f, false);
     }
 

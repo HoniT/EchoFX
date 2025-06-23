@@ -11,12 +11,12 @@ import java.io.IOException;
 
 public class Song {
     private int song_id;
-    private String address;
-    private int userId;
-    private String title;
-    private String artist;
-    private String album;
-    private float duration;
+    private final String address;
+    private final int userId;
+    private final String title;
+    private final String artist;
+    private final String album;
+    private final float duration;
     private boolean is_favorite;
 
     public Song(int song_id, String address, int userId, String title, String artist, String album, float duration, boolean is_favorite) {
@@ -40,7 +40,7 @@ public class Song {
             SongController controller = loader.getController();
             controller.setTitle(this.title);
             controller.setArtist(this.artist);
-            controller.setPlayAction(event -> {
+            controller.setPlayAction(_ -> {
                 AudioPlayService.playMusic(this.address, this);
                 // Setting this title as the current playing song
                 MainController.controller.setCurrentSongText(this.title);

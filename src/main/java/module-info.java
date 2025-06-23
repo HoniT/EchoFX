@@ -19,4 +19,6 @@ module ge.mziuri.echofx {
     opens ge.mziuri.echofx.controllers to javafx.fxml;
     exports ge.mziuri.echofx.services;
     opens ge.mziuri.echofx.services to javafx.fxml;
+    exports ge.mziuri.echofx.database.models;
+    opens ge.mziuri.echofx.database.models to javafx.fxml;
 }

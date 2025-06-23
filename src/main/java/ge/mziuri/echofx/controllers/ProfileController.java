@@ -7,6 +7,7 @@ import ge.mziuri.echofx.services.SceneChangeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -20,10 +21,19 @@ public class ProfileController {
     private Text emailText;
 
     @FXML
+    private AnchorPane creditCardInfoPane;
+
+    @FXML
     private void initialize() {
         // Setting user info
         usernameText.setText(usernameText.getText() + Session.getUser().getUsername());
         emailText.setText(emailText.getText() + Session.getUser().getEmail());
+
+        // If the user is already premium we'll disable the credit card info pane
+        if(Session.getUser().isPremium()) {
+            creditCardInfoPane.setDisable(true);
+            creditCardInfoPane.setVisible(false);
+        }
     }
 
     @FXML

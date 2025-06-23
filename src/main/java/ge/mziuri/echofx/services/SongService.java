@@ -2,6 +2,7 @@ package ge.mziuri.echofx.services;
 
 import ge.mziuri.echofx.Session;
 import ge.mziuri.echofx.database.models.Song;
+import ge.mziuri.echofx.database.repository.SongRepository;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -43,7 +44,7 @@ public class SongService {
             float durationInMinutes = Math.round(minutes * 100f) / 100f;
         });
 
-        return new Song(0, file, Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 0.00f, false);
+        return new Song(SongRepository.retrieveSongId(file), file, Session.getUser().getUserId(), getTitle(file), "DefaultArtist", "DefaultAlbum", 0.00f, false);
     }
 
     // Translates a result set into a song object

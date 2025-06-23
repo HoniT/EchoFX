@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ge.mziuri.echofx.controllers.MainController">
       <AnchorPane prefHeight="60.0" prefWidth="960.0" style="-fx-background-color: AAA AAA;" VBox.vgrow="NEVER">
             <Text layoutX="51.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EchoFX" wrappingWidth="106.373046875">
                <font>
@@ -50,7 +50,8 @@
             </VBox>
       </ScrollPane>
       <AnchorPane prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #AAAAAA;" VBox.vgrow="NEVER">
-            <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#showFavoriteSongs" prefHeight="33.0" prefWidth="302.0" text="Favorites" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="644.0" />
-            <Button layoutX="644.0" layoutY="10.0" mnemonicParsing="false" onAction="#listSongs" prefHeight="33.0" prefWidth="302.0" text="Home" AnchorPane.leftAnchor="644.0" AnchorPane.rightAnchor="14.0" />
+            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#showFavoriteSongs" prefHeight="33.0" prefWidth="302.0" text="Favorites" AnchorPane.leftAnchor="14.0" />
+            <Button layoutX="644.0" layoutY="10.0" mnemonicParsing="false" onAction="#listSongs" prefHeight="33.0" prefWidth="302.0" text="Home" AnchorPane.rightAnchor="14.0" />
+            <Button layoutX="329.0" layoutY="10.0" mnemonicParsing="false" onAction="#showPlaylists" prefHeight="33.0" prefWidth="302.0" text="Playlists" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="329.0" />
       </AnchorPane>
 </VBox>

@@ -59,6 +59,10 @@ public class Song {
         return song_id;
     }
 
+    public void setSong_id(int song_id) {
+        this.song_id = song_id;
+    }
+
     public int getUserId() {
         return userId;
     }

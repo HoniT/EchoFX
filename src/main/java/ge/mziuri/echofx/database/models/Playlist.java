@@ -1,6 +1,9 @@
 package ge.mziuri.echofx.database.models;
 
+import ge.mziuri.echofx.controllers.MainController;
 import ge.mziuri.echofx.controllers.PlaylistController;
+import ge.mziuri.echofx.controllers.PlaylistViewController;
+import ge.mziuri.echofx.database.repository.SongRepository;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
@@ -17,19 +20,25 @@ public class Playlist {
         this.name = name;
     }
 
-    public AnchorPane createBanner() {
+    public AnchorPane createBanner(boolean onPlaylistsView) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ge/mziuri/echofx/views/PlaylistView.fxml"));
             AnchorPane banner = loader.load();
             PlaylistController controller = loader.getController();
             controller.setNameText(this.name);
-
+            if(onPlaylistsView)
+                controller.addButton.setOnAction(action -> {
+                    SongRepository.addSongToPlaylist(this.playlistId, PlaylistViewController.currentSong);
+                });
+            else
+                controller.addButton.setOnAction(action -> {
+                    MainController.controller.listSongs(SongRepository.getPlaylistSongs(this.playlistId));
+                });
 
             return banner;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public int getPlaylistId() {

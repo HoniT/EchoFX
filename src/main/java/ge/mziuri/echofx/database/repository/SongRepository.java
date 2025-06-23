@@ -25,6 +25,8 @@ public class SongRepository {
             preparedStatement.setFloat(6, song.getDuration());
             preparedStatement.setBoolean(7, song.isIs_favorite());
             preparedStatement.execute();
+
+            song.setSong_id(retrieveSongId(song.getAddress()));
         }
         catch(SQLException e) {
             System.out.println(e.getMessage());
@@ -33,10 +35,30 @@ public class SongRepository {
 
     private static void removeSong(Song song) {
         try {
-            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("DELETE FROM songs WHERE address = ? AND user_id = ?");
+            // Deleting from playlist_songs if we can
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("DELETE FROM playlist_songs WHERE song_id = ?");
+            preparedStatement.setInt(1, song.getSong_id());
+            preparedStatement.execute();
+
+            preparedStatement = Database.getConnection().prepareStatement("DELETE FROM songs WHERE address = ? AND user_id = ?");
             preparedStatement.setString(1, song.getAddress());
             preparedStatement.setInt(2, Session.getUser().getUserId());
             preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Retrieves the song id for a users song
+    public static int retrieveSongId(String address) {
+        try {
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("SELECT song_id FROM songs WHERE user_id = ? AND address = ?");
+            preparedStatement.setInt(1, Session.getUser().getUserId());
+            preparedStatement.setString(2, address);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(!rs.next()) return 0;
+
+            return rs.getInt(1);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -101,9 +123,8 @@ public class SongRepository {
     }
 
     public static List<Playlist> getPlaylists() {
-        List<Playlist> playlists = new ArrayList<>();
-
         try {
+            List<Playlist> playlists = new ArrayList<>();
             PreparedStatement preparedStatement = Database.getConnection().prepareStatement("SELECT * FROM playlists WHERE user_id = ?");
             preparedStatement.setInt(1, Session.getUser().getUserId());
             ResultSet rs = preparedStatement.executeQuery();
@@ -113,14 +134,44 @@ public class SongRepository {
                         rs.getInt(2),
                         rs.getString(3)));
             }
+            return playlists;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return playlists;
+    }
+
+    public static List<Song> getPlaylistSongs(int playlist_id) {
+        try {
+            List<Song> songs = new ArrayList<>();
+
+            String sql = """
+                SELECT s.song_id, s.address, s.user_id, s.title, s.artist, s.album, s.duration, s.is_favorite
+                FROM songs s
+                JOIN playlist_songs ps ON s.song_id = ps.song_id
+                WHERE ps.playlist_id = ?
+            """;
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, playlist_id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+                songs.add(SongService.rsToSong(rs));
+            }
+
+            return songs;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void addPlaylist(String name) {
+        // If it already exists we'll skip
+        if(retrievePlaylist(name) != null) {
+            System.out.println("Playlist already exists!");
+            return;
+        }
+
         try {
             PreparedStatement preparedStatement = Database.getConnection().prepareStatement("INSERT INTO playlists (user_id, name) VALUES (?, ?)");
             preparedStatement.setInt(1, Session.getUser().getUserId());
@@ -141,7 +192,30 @@ public class SongRepository {
         }
     }
 
+    private static boolean getPlaylistSong(int playlist_id, Song song) {
+        try {
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement("SELECT * FROM playlist_songs WHERE playlist_id = ? and song_id = ?");
+            preparedStatement.setInt(1, playlist_id);
+            preparedStatement.setInt(2, song.getSong_id());
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if(!rs.next()) return false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
     public static void addSongToPlaylist(int playlist_id, Song song) {
+        // If it's already in playlist returning
+        if(getPlaylistSong(playlist_id, song)) {
+            System.out.println("Song already in playlist!");
+            return;
+        }
+
+        // Adding song to DB if not already added
+        if(retrieveSongId(song.getAddress()) == 0) addSong(song);
+
         try {
             PreparedStatement preparedStatement = Database.getConnection().prepareStatement("INSERT INTO playlist_songs VALUES (?, ?)");
             preparedStatement.setInt(1, playlist_id);

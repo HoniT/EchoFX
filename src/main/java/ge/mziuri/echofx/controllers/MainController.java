@@ -133,7 +133,8 @@ public class MainController {
         MainController.currentListing = SongTypes.HOME;
     }
 
-    private void listSongs(List<Song> songs) {
+    public void listSongs(List<Song> songs) {
+        songDisplayPane.getChildren().clear();
         for(Song song : songs) {
             songDisplayPane.getChildren().add(song.createBanner());
         }
@@ -238,8 +239,14 @@ public class MainController {
         URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/PlaylistsView.fxml");
         FXMLLoader loader = SceneChangeService.changeSceneWithController(event, fxmlUrl, "EchoFX - Playlists");
 
-        PlaylistsController playlistsController = loader.getController();
-        playlistsController.setSongNameText(song.getTitle());
+        PlaylistViewController playlistViewController = loader.getController();
+        playlistViewController.setSongNameText(song);
+    }
+
+    @FXML
+    private void showPlaylists() {
+        songDisplayPane.getChildren().clear();
+        PlaylistViewController.displayPlaylists(songDisplayPane, false);
     }
 
     // </editor-fold>

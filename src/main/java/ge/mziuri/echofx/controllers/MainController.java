@@ -201,6 +201,7 @@ public class MainController {
 
     @FXML
     private void loadProfileView(ActionEvent event) {
+        AudioPlayService.destroyMedia();
         URL fxmlUrl = MainController.class.getResource("/ge/mziuri/echofx/views/ProfileView.fxml");
         SceneChangeService.changeScene(event, fxmlUrl, "EchoFX - Profile");
     }
